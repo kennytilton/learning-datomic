@@ -1,4 +1,4 @@
-(ns dto-play.s3-assertion-read-accumulate
+(ns learning-datomic.s3-assertion-read-accumulate
   (:require
     [datomic.client.api :as d]))
 
@@ -11,7 +11,7 @@
     (def client (d/client cfg))
     (d/create-database client {:db-name "tutorial"})
     (def conn (d/connect client {:db-name "tutorial"})))
-  ;=> #'dto-play.assertion/conn
+  ;=> #'learning-datomic.assertion/conn
 
   (d/transact
     conn

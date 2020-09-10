@@ -1,4 +1,4 @@
-(ns dto-play.s2-client-api
+(ns learning-datomic.s2-client-api
   (:require
     [datomic.client.api :as d]))
 
@@ -41,7 +41,7 @@
     (def client (d/client cfg))
     (d/create-database client {:db-name "movies"})
     (def conn (d/connect client {:db-name "movies"})))
-  ;; => #'dto-play.client-api/conn
+  ;; => #'learning-datomic.client-api/conn
 
   (d/transact conn {:tx-data movie-schema})
   ;; numerics below will vary in your results...
@@ -154,7 +154,7 @@
    :tempids {}}
 
   (def db (d/db conn))
-  ;; => #'dto-play.client-api/db
+  ;; => #'learning-datomic.client-api/db
   ;; but we will not use this ^^^
   ;; we will query by pulling the current db from the connection each time
 
@@ -168,7 +168,7 @@
   (def titles-from-1985 '[:find ?title
                           :where [?e :movie/title ?title]
                           [?e :movie/release-year 1985]])
-  ;; => #'dto-play.client-api/titles-from-1985
+  ;; => #'learning-datomic.client-api/titles-from-1985
 
   (d/q titles-from-1985 (d/db conn))
   ;; => [["Commando"] ["The Goonies"]]
@@ -179,7 +179,7 @@
                             [?e :movie/release-year ?year]
                             [?e :movie/genre ?genre]
                             [?e :movie/release-year 1985]])
-  ;; => #'dto-play.client-api/all-data-from-1985
+  ;; => #'learning-datomic.client-api/all-data-from-1985
 
   (d/q all-data-from-1985 (d/db conn))
   ;; => [["Commando" 1985 "thriller/action"] ["The Goonies" 1985 "action/adventure"]]

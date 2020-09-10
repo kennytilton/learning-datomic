@@ -1,4 +1,4 @@
-(ns dto-play.core
+(ns learning-datomic.core
   (:gen-class))
 
 ;; Nothing here. Suggest working thru the other sources

@@ -1,4 +1,4 @@
-(ns dto-play.s0-hello-world
+(ns learning-datomic.s0-hello-world
   (:require
     [datomic.client.api :as d]
     [clojure.java.data :as j]))

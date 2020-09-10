@@ -1,4 +1,4 @@
-# dto-play
+# learning-datomic
 
 FIXME: description
 

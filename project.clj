@@ -7,6 +7,6 @@
                  [org.clojure/java.data "1.0.86"]
                  [com.datomic/dev-local "0.9.184"]
                  [com.datomic/client-cloud "0.8.102"]]
-  :main ^:skip-aot dto-play.core
+  :main ^:skip-aot learning-datomic.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})

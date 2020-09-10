@@ -1,6 +1,6 @@
-(ns dto-play.core-test
+(ns learning-datomic.core-test
   (:require [clojure.test :refer :all]
-            [dto-play.core :refer :all]))
+            [learning-datomic.core :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."

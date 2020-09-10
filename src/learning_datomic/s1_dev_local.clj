@@ -1,4 +1,4 @@
-(ns dto-play.s1-dev-local
+(ns learning-datomic.s1-dev-local
   (:require
     [datomic.client.api :as d]
     [datomic.dev-local :as dl]))
@@ -9,17 +9,17 @@
 (comment
   (def client (d/client {:server-type :dev-local
                          :system      "dev"}))
-  ;; => #'dto-play.local-dev/client
+  ;; => #'learning-datomic.local-dev/client
 
   (d/create-database client {:db-name "ktilton"})
   (d/create-database client {:db-name "movies"})
   ;; true
 
   (def conn (d/connect client {:db-name "movies"}))
-  ;; #'dto-play.local-dev/conn
+  ;; #'learning-datomic.local-dev/conn
 
   (def db (d/db conn))
-  ;; #'dto-play.local-dev/db
+  ;; #'learning-datomic.local-dev/db
 
   db
   ;#datomic.core.db.Db{:id "movies"

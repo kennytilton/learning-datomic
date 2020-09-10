@@ -1,4 +1,4 @@
-(ns dto-play.splitting-datomic
+(ns learning-datomic.splitting-datomic
   (:require
     [datomic.client.api :as d]
     [clojure.java.data :as j]))

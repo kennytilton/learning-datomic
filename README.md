@@ -42,8 +42,7 @@ FIXME: description
 
 ## Usage
 
-Execute just "Getting Setup" here:
-   https://docs.datomic.com/cloud/dev-local.html
+Each source file/lesson will eventually be just a namespace and bunch of Clojure comments.
 
 ## License
 

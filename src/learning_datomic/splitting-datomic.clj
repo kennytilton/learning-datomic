@@ -72,7 +72,7 @@
 
 (comment
   (def client (d/client {:server-type :dev-local
-                         :system      "datomic-samples"}))
+                         :system      "dev"})) ;; <-- any system name will do
   (d/create-database client {:db-name "splitting"})
   (def conn (d/connect client {:db-name "splitting"})))
 ;;
@@ -100,10 +100,11 @@
 (comment
   (count (d/datoms (d/db conn) {:index :eavt})))
 
-;; A new DB has 217 datoms. OK. So what does {:index :eavt} do?
-;; That tells the function datoms to use the
-;; index sorted on E, A, V, and Tx. If we know the entity E we are after,
-;; this is the fastest way to get to it.
+;; A new DB has 217 datoms, as of this writing. OK.
+;; So what does {:index :eavt} do in the call to d/atoms?
+;; That map tells the function datoms to use the dto index that
+;; is sorted on E, A, V, and Tx. If we know the entity E of the
+;; datom for which we are looking, this is the fastest way to get to it.
 ;;
 ;; Other indexes sort differently and are faster depending what info
 ;; we are starting with. AEVT sorts by attribute and entity, faster where
@@ -213,10 +214,17 @@
 ;;    with the fact [10 10 :db/ident], saying in effect "10 will be the entity ID
 ;;    of the identifier :db/ident. But 10 in the attribute position means
 ;;    10 must be an attribute, meaning 10 must have attributes used to
-;;    define attributes. [todo: show these] [todo:create an ident :nota/attribute
-;;    and confirm dto will not accept that.]
-;;    So we also have an attribute named :db/ident. [todo: show the bootstrapping
-;;    of the :db/ident attribute.]
+;;    define attributes. Let's see:
+
+(comment
+  (d/datoms (d/db conn)
+    {:index      :eavt
+     :components [10]}))
+
+;;   [todo: show these]
+;;   [todo:create an ident :nota/attribute and confirm dto will not accept that.]
+;;    So we also have an attribute named :db/ident.
+;;   [todo: show the bootstrapping of the :db/ident attribute.]
 ;;    The attribute :db/ident establishes an identifier whose symbolic name
 ;;    is the value of the fact with :db/ident as the attribute name.
 ;;
@@ -304,7 +312,9 @@
 
 ;; Let's make our first utility.
 
-(def ^:dynamic *db* (d/db conn))                            ;; <---- re-evaluate as needed!!!!!!!!!!!
+(comment
+  ;; re-evaluate this next on each session
+  (def ^:dynamic *db* (d/db conn)))
 
 (defn id-to-ident [id]
   (:v (first
@@ -388,6 +398,8 @@
 (comment
   ;; let's learn everything we can about :db/doc
   (datoms-xlt :eavt 63)
+  (datoms-xlt :eavt 10)
+
   ;; and we learned the index API at least will let us get away with the ident :db/doc
   (datoms-xlt :eavt :db/doc)
 
@@ -488,7 +500,7 @@
   ;; is no first turtle. Let us look at the raw values to imagine
   ;; the DB universe as it was being created
   (binding [*db* (d/as-of (d/db conn) 13194139533312)]
-    (datoms-xlt :eavt))
+    (datoms-xlt :eavt 10))
   ;; Ah, but as of the first Tx, many ident translations had been created
   ;; for use going forward. A better sense might be had of those early
   ;; moments of the DB big bang by not leveraging those translations, since

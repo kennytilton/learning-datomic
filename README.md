@@ -8,7 +8,7 @@ FIXME: description
 
     `mvn -v`
     
-    If you get useful response, skip ahead.
+    If you get useful response, skip to step #4 to install `dev-local`.
 
 2. Install `maven`:
 
@@ -34,7 +34,7 @@ FIXME: description
   
   `mvn -v`
   
-  No luck? Ping Ken Tilton on Slack.
+  No luck? Ping `maverick` on Slack.
   
 4. Execute just "Getting Setup" here:
 
@@ -42,8 +42,7 @@ FIXME: description
 
 ## Usage
 
-Execute just "Getting Setup" here:
-   https://docs.datomic.com/cloud/dev-local.html
+Each source file/lesson will eventually be just a namespace and bunch of Clojure `(comment...)`s. Evaluate those as you follow the comments.
 
 ## License
 

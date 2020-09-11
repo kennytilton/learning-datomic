@@ -1,6 +1,6 @@
 # learning-datomic
 
-FIXME: description
+Follow along as one engineer learns Datomic. A companion repo for http://www.smuglispweeny.com/?page_id=50
 
 ## Installation
 
